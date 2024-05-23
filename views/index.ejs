@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/styles/main.css">
+  <title>Jokes By Aoun</title>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Which kind of joke you wanna hear?</h1>
+
+    <form action="/form" id="form" class="form" method="POST">
+      <select name="category" class="form-select" >
+        <option value="">Categories</option>
+        <option value="Any" data-display="Select">Any</option>
+        <option value="Programming">Programming</option>
+        <option value="Miscellaneous">Misc</option>
+        <option value="Dark">Dark</option>
+        <option value="Pun">Pun</option>
+      </select>
+      <select name="blackListFlags" class="form-select" >
+        <option value="">Flags you want to Blacklist</option>
+        <option value="nsfw">NFSW</option>
+        <option value="religious">Religous</option>
+        <option value="political">Polictical</option>
+        <option value="racist">Racist</option>
+        <option value="sexist">Sexist</option>
+        <option value="explicit">Explicit</option>
+      </select>
+      <button type="submit" class="form-submit">Generate</button>
+    </form>
+    <section id="cards" class="cards">
+      <article class="card-item">
+        <% if(locals.data.joke) {%>
+        <h2 class="card-activity">
+          <!-- Show Activity -->
+          <%= data.joke %>
+        </h2>
+        <div class="card-info">
+          <span class="card-type">
+            <!-- Show Activity type -->
+            <%= data.category %>
+          </span>
+          <span class="card-participants">
+            <!-- participants: Show participant number -->
+            <span class="card-number"> <%= data.id %></span>
+          </span>
+        </div>
+        <% }else{ %>
+            <h2 class="card-activity">
+                <!-- Show Activity -->
+                No jokes were found that match your provided filter
+              </h2>
+              <% } %>
+        <% if (locals.error) {%>
+        <div id="tag-error" class="tag-error">
+            <%= error %>
+         <% } %>
+        </div>
+      </article>
+      
+      <!-- Show any errors that were sent from the backend -->
+
+    </section>
+  </div>
+
+</body>
+
+</html>
